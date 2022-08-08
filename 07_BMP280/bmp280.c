@@ -175,20 +175,7 @@ static int __init ModuleInit(void) {
 	id = i2c_smbus_read_byte_data(bmp280_i2c_client, 0xD0);
 	printk("ID: 0x%x\n", id);
 
-	/* Read Calibration Values */
-	dig_T1 = i2c_smbus_read_word_data(bmp280_i2c_client, 0x88);
-	dig_T2 = i2c_smbus_read_word_data(bmp280_i2c_client, 0x8a);
-	dig_T3 = i2c_smbus_read_word_data(bmp280_i2c_client, 0x8c);
-
-	if(dig_T2 > 32767)
-		dig_T2 -= 65536;
-
-	if(dig_T3 > 32767)
-		dig_T3 -= 65536;
-
-	/* Initialice the sensor */
-	i2c_smbus_write_byte_data(bmp280_i2c_client, 0xf5, 5<<5);
-	i2c_smbus_write_byte_data(bmp280_i2c_client, 0xf4, ((5<<5) | (5<<2) | (3<<0)));
+	
 	return ret;
 
 KernelError:
