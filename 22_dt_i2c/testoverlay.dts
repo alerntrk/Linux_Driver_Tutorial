@@ -1,16 +1,16 @@
 /dts-v1/;
 /plugin/;
 / {
-	compatible = "brcm,bcm2835";
+	compatible = "qcom,kona";
 	fragment@0 {
 		target = <&i2c1>;
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
-			my_adc: my_adc@10 {
-				compatible = "brightlight,myadc";
-				reg = <0x10>;
+			cam: cam@28 {
+				compatible = "omni,ov9282";
+				reg = <0x28>;
 				status = "okay";
 			};
 		};
